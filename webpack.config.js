@@ -2,6 +2,7 @@ const path = require("path")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
+    mode:'development',
     entry: "./src/index.js", // 入口
     output: { 
         path: path.resolve(__dirname, "dist"), // 出口路径 绝对路径
@@ -14,8 +15,13 @@ module.exports = {
             template: './public/index.html',
       // template 为webpack 打包生成 dist/ html 文件指定模版
              filename: 'index.html' // html 文件 文件名称
-        })
-      ]
+        }),
+
+      ],
+      devServer: {
+        port: 8080, // 端口号
+        open: true
+      }
 }
 // __dirname 可以用来动态获取当前文件所属目录的绝对路径
 // /Users/maohuihui/Desktop/vue-base/code/day_01/03_webpack配置_修改入口和出口
