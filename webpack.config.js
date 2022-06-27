@@ -1,6 +1,7 @@
 const path = require("path")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
     mode:'development',
@@ -17,6 +18,7 @@ module.exports = {
       // template 为webpack 打包生成 dist/ html 文件指定模版
              filename: 'index.html' // html 文件 文件名称
         }),
+        new VueLoaderPlugin()
 
       ],
       devServer: {
@@ -40,7 +42,12 @@ module.exports = {
           // css-loader 再把css代码转换成webpack 可以识别的js代码
           // style-loader 在把css代码插入到 dom中
             use: [ "style-loader", "css-loader", 'less-loader']
-        }
+        },
+        {
+            test: /\.vue$/,
+            use: ['vue-loader']
+          },
+
         ]
     }
 }
